@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CTF Writeups Categories</title>
+    <link rel="stylesheet" href="./css/styles.css">
+    <link rel="stylesheet" href="./css/categories.css">
+    <script src="https://cdn.jsdelivr.net/npm/showdown/dist/showdown.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-left">
+            <a href="./" class="nav-logo" title="Home">
+                <i class="fas fa-flag"></i>
+            </a>
+        </div>
+        <div class="nav-right">
+            <a href="./archive.html">Archive</a>
+            <a href="./categories.html" class="active">Categories</a>
+            <a href="https://petervancleave.github.io/" target="_blank" class="icon-link" title="My Website">
+                <i class="fas fa-globe"></i>
+            </a>
+            <a href="https://github.com/petervancleave" target="_blank" class="icon-link" title="GitHub">
+                <i class="fab fa-github"></i>
+            </a>
+        </div>
+    </nav>
+
+    <div class="categories-container">
+        <div class="watercolor-bg"></div>
+        <h1>Categories</h1>
+        
+        <div class="categories-grid" id="categories-grid">
+            <!-- Categories will be dynamically inserted here -->
+        </div>
+
+        <div id="category-writeups" class="category-writeups hidden">
+            <a class="back-button" id="back-button">
+                <i class="fas fa-arrow-left"></i>
+                Back to Categories
+            </a>
+            <h2 id="category-title"></h2>
+            <div class="writeup-grid" id="writeup-grid">
+                <!-- Category writeups will be dynamically inserted here -->
+            </div>
+        </div>
+    </div>
+
+    <script src="js/watercolor.js"></script>
+    <script>
+        class CategoriesManager {
+            constructor() {
+                this.categories = [
+                    { id: 'web', name: 'Web Exploitation', icon: '<i class="fas fa-globe"></i>' },
+                    { id: 'binary', name: 'Binary Exploitation', icon: '<i class="fas fa-microchip"></i>' },
+                    { id: 'reverse', name: 'Reverse Engineering', icon: '<i class="fas fa-undo"></i>' },
+                    { id: 'crypto', name: 'Cryptography', icon: '<i class="fas fa-lock"></i>' },
+                    { id: 'forensics', name: 'Digital Forensics', icon: '<i class="fas fa-search"></i>' },
+                    { id: 'osint', name: 'OSINT', icon: '<i class="fas fa-earth-americas"></i>' },
+                    { id: 'stego', name: 'Steganography', icon: '<i class="fas fa-image"></i>' },
+                    { id: 'misc', name: 'Miscellaneous', icon: '<i class="fas fa-puzzle-piece"></i>' }
+                ];
+                this.writeups = [];
+                this.categoriesGrid = document.getElementById('categories-grid');
+                this.categoryWriteups = document.getElementById('category-writeups');
+                this.writeupGrid = document.getElementById('writeup-grid');
+                this.categoryTitle = document.getElementById('category-title');
+                this.backButton = document.getElementById('back-button');
+                
+                this.init();
+            }
+
+            async init() {
+                try {
+                    await this.fetchWriteups();
+                    this.displayCategories();
+                    this.setupEventListeners();
+                } catch (error) {
+                    console.error('Error initializing categories:', error);
+                }
+            }
+
+            async fetchWriteups() {
+                try {
+                    const response = await fetch('./posts/index.json');
+                    if (!response.ok) throw new Error('Failed to fetch writeups');
+                    const data = await response.json();
+                    this.writeups = data.posts;
+                } catch (error) {
+                    console.error('Error fetching writeups:', error);
+                    this.writeups = [];
+                }
+            }
+
+            setupEventListeners() {
+                this.backButton.addEventListener('click', () => {
+                    this.categoryWriteups.classList.add('hidden');
+                    this.categoriesGrid.classList.remove('hidden');
+                });
+            }
+
+            getWriteupCountByCategory(category) {
+                return this.writeups.filter(writeup => writeup.category === category).length;
+            }
+
+            displayCategories() {
+                this.categoriesGrid.innerHTML = '';
+                
+                this.categories.forEach(category => {
+                    const count = this.getWriteupCountByCategory(category.name);
+                    const card = document.createElement('div');
+                    card.className = 'category-card';
+                    card.innerHTML = `
+                        <div class="category-icon">${category.icon}</div>
+                        <h3>${category.name}</h3>
+                        <p>${count} writeup${count !== 1 ? 's' : ''}</p>
+                    `;
+                    
+                    card.addEventListener('click', () => this.showCategoryWriteups(category.name));
+                    this.categoriesGrid.appendChild(card);
+                });
+            }
+
+            showCategoryWriteups(categoryName) {
+                const categoryWriteups = this.writeups.filter(writeup => writeup.category === categoryName);
+                this.writeupGrid.innerHTML = '';
+                
+                categoryWriteups
+                    .sort((a, b) => new Date(b.date) - new Date(a.date))
+                    .forEach(writeup => {
+                        const article = document.createElement('article');
+                        article.className = 'writeup-card';
+                        article.innerHTML = `
+                            <img src="./images/categories/${writeup.category.toLowerCase().replace(' ', '-')}.jpg" 
+                                 alt="${writeup.category}"
+                                 onerror="this.src='./images/categories/misc.jpg'">
+                            <div class="writeup-content">
+                                <div class="writeup-date">
+                                    ${new Date(writeup.date + 'T12:00:00').toLocaleDateString('en-US', {
+                                        year: 'numeric',
+                                        month: 'long',
+                                        day: 'numeric'
+                                    })}
+                                </div>
+                                <h3 class="writeup-title">${writeup.title}</h3>
+                                <div class="writeup-tags">
+                                    ${writeup.tags.map(tag => `<span class="tag">${tag}</span>`).join('')}
+                                </div>
+                                <a href="./post.html?id=${encodeURIComponent(writeup.filename)}" class="read-more">
+                                    Read Writeup →
+                                </a>
+                            </div>
+                        `;
+                        this.writeupGrid.appendChild(article);
+                    });
+
+                this.categoryTitle.textContent = categoryName;
+                this.categoriesGrid.classList.add('hidden');
+                this.categoryWriteups.classList.remove('hidden');
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            new CategoriesManager();
+        });
+    </script>
+</body>
+</html> 
