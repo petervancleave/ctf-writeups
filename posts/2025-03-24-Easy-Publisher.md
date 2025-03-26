@@ -1,6 +1,4 @@
-#THM 
-
-# CTF Challenge Writeup: Publisher
+# TryHackMe: Publisher
 
 **Challenge Name:** Publisher  
 **Platform:** TryHackMe  
