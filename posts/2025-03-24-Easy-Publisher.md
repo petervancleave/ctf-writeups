@@ -28,7 +28,7 @@ I began by scanning the target IP using nmap to identify open ports and services
 nmap -sC -sV 10.10.176.47
 ```
 
-![](attachment/11a0df8f4c1b383aaf7f4f89ce8c4ace.png)
+![Screenshot](posts/postattach/THM/easy-publisher/publisher1)
 
 Ports 22 (SSH) and 80 (HTTP) were open. Since we are dealing with a web-based challenge, port 80 is the focus.
 
