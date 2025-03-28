@@ -1,6 +1,6 @@
 # CTF Writeups Blog
 
-[link](https://petervancleave.github.io/ctf-writeups/){:target="_blank"}
+[link](https://petervancleave.github.io/ctf-writeups/)
 
 - Modern watercolor theme with ambient animations
 - Fully responsive design
