@@ -1,6 +1,8 @@
 # CTF Writeups Blog
 
-[link](https://petervancleave.github.io/ctf-writeups/)
+Find my CTF Writeups Here: https://petervancleave.github.io/ctf-writeups/
+
+## Features
 
 - Modern watercolor theme with ambient animations
 - Fully responsive design
