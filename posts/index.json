@@ -8,11 +8,11 @@
             "tags": ["tryhackme", "privilege escalation", "metasploit"]
         },
         {
-            "filename": "2024-03-07-buffer-overflow.md",
-            "title": "Stack Buffer Overflow Exploitation",
-            "date": "2024-03-07",
-            "category": "Binary Exploitation",
-            "tags": ["buffer-overflow", "pwn", "stack"]
+            "filename": "2025-03-26-Easy-RootMe.md",
+            "title": "TryHackMe - RootMe",
+            "date": "2025-03-26",
+            "category": "Web Exploitation",
+            "tags": ["tryhackme", "privilege escalation", "reverse shell"]
         },
         {
             "filename": "2024-03-06-reverse-engineering.md",
