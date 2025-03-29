@@ -24,11 +24,11 @@ RootMe is a beginner-friendly CTF challenge on TryHackMe that focuses on basic p
 ## 3. Solution
 
 I like to start by pinging the IP of the target machine:
-![[Screenshot From 2025-03-28 17-34-37.png]]
+![ss1](https://github.com/user-attachments/assets/11a7dfdb-aa55-4bc0-a728-eefd465eb942)
 
 Then, I visited the IP in my web browser to see what we were working with
 
-![[Screenshot From 2025-03-28 17-35-59.png]]
+![ss2](https://github.com/user-attachments/assets/b9c79efc-aa50-48cb-b7d4-66be9756a008)
 
 It looks pretty unassuming, so I will move on to an nmap scan
 ### Recon
@@ -39,7 +39,7 @@ First, I started with a basic nmap scan to identify open ports/services:
 nmap -sC -sV 10.10.95.41
 ```
 
-![[Screenshot From 2025-03-28 17-47-32.png]]
+![ss3](https://github.com/user-attachments/assets/46939c15-7bd1-45fc-8d02-5be15cdd0e08)
 
 The scan revealed two open ports:
 - Port 22: SSH service
@@ -53,13 +53,13 @@ I used Gobuster to find hidden directories:
 gobuster dir -u http://10.10.95.41/ -w /usr/share/seclists/Discovery/Web-Content/big.txt
 ```
 
-![[Screenshot From 2025-03-28 17-52-11.png]]
+![ss4](https://github.com/user-attachments/assets/c5a14b58-1260-42fa-a488-3fb8cef3f13c)
 
 Using a large wordlist like this is maybe overkill, but I like to use this one so I don't miss anything.
 
 The interesting directory found was `/panel`, which contained a file upload functionality:
 
-![[Screenshot From 2025-03-28 18-01-50.png]]
+![ss5](https://github.com/user-attachments/assets/a19d0ed2-3fb1-4409-8b65-fdd66d896549)
 
 ### Exploiting File Upload
 
@@ -72,11 +72,11 @@ After several attempts with different file extensions:
 3. `shell.php1` - Uploaded but didn't execute
 4. `shell.php5` - <font color="#c00000">Successfully uploaded and executed</font>
 
-![[Screenshot From 2025-03-28 18-13-25.png]]
+![ss6](https://github.com/user-attachments/assets/69b4a840-9e47-42b6-acc3-fb714c30831a)
 
 shell.php5 worked using a PHP reverse shell from pentestmonkey (modified with my IP and port):
 
-![[Screenshot From 2025-03-28 18-16-50.png]]
+![ss7](https://github.com/user-attachments/assets/f59f531b-3f9e-4116-a4bd-1dcc4dd3cdeb)
 
 The code can be found here:
 https://github.com/pentestmonkey/php-reverse-shell
@@ -235,18 +235,18 @@ I uploaded the file with this code and set a listener using netcat:
 nc -lvnp 1234
 ```
 
-![[ss8.png]]
+![ss8](https://github.com/user-attachments/assets/fca299bc-fa93-4e26-ae37-fd00b8fa3c22)
 
 I then visited the file url (you can get there by clicking on the veja! link on the page or going to the /uploads directory).
 
 This prompted a response from the listener:
 
-![[Screenshot From 2025-03-28 18-21-46.png]]
+![ss9](https://github.com/user-attachments/assets/6d279566-aa04-496d-882a-2ca09931308c)
 
 Now we have access to a shell.
 I started out by using the `whoami` command to get an idea
 
-![[whoami.png]]
+![ss10](https://github.com/user-attachments/assets/069170c9-161e-4d9d-aa20-9834fdfed5ae)
 
 We are www-data
 
@@ -259,10 +259,10 @@ find / -name user.txt 2>/dev/null
 cat /var/www/user.txt
 ```
 
-![[Screenshot From 2025-03-28 18-24-53.png]]
-(I forgot to add 2>/dev/null, but you can see the /var/www/user.txt in the screenshot does not have denied permissions)
+![s11](https://github.com/user-attachments/assets/57c27553-06e8-44eb-9202-22499cf26afb)
+(I didn't add 2>/dev/null, but you can see the /var/www/user.txt in the screenshot does not have denied permissions)
 
-![[Screenshot From 2025-03-28 18-25-34.png]]
+![s12](https://github.com/user-attachments/assets/da4fbe14-f8ea-4fbe-8337-febf400032c5)
 (You can see here user.txt, just cat it out for the user flag)
 
 ### Privilege Escalation and Root Flag
@@ -273,13 +273,13 @@ Checking for SUID binaries:
 find / -perm -4000 2>/dev/null
 ```
 
-![[Screenshot From 2025-03-28 18-29-03.png]]
+![s13](https://github.com/user-attachments/assets/88e0f114-df59-41df-b09a-5aa4cc0e7196)
 
-![[Screenshot From 2025-03-28 18-30-58.png]]
+![s14](https://github.com/user-attachments/assets/c002b747-a3a4-4fa7-87ce-29e4a9c27509)
 
 Noticed `/usr/bin/python` stuck out, check the permissions and it had SUID permissions:
 
-![[s15.png]]
+![s15](https://github.com/user-attachments/assets/de0a9c47-303b-495d-96ec-6d7f670484b3)
 
 Lets use this to spawn a root shell:
 
@@ -287,7 +287,7 @@ Lets use this to spawn a root shell:
 /usr/bin/python -c 'import os; os.execl("/bin/sh", "sh", "-p")'
 ```
 
-![[s16.png]]
+![s16](https://github.com/user-attachments/assets/457b8600-292e-4b3b-94a4-7325bed7f183)
 
 Now we can use `whoami` to see we are now root
 
@@ -300,7 +300,8 @@ cat /root/root.txt
 
 Now we have the root flag
 
-![[s17.png]]
+![s17](https://github.com/user-attachments/assets/d5ae72f8-22df-4c1e-b9d3-1a725fd1e78c)
+
 ## 4. Takeaways
 
 1. **File Upload Bypass**: Testing various file extensions can bypass weak filters
