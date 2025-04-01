@@ -15,11 +15,11 @@
             "tags": ["tryhackme", "privilege escalation", "reverse shell"]
         },
         {
-            "filename": "2024-03-06-reverse-engineering.md",
-            "title": "Reversing a Custom Encryption Algorithm",
-            "date": "2024-03-06",
-            "category": "Reverse Engineering",
-            "tags": ["reverse-engineering", "encryption", "assembly"]
+            "filename": "2025-04-01-Easy-OhSINT.md",
+            "title": "TryHackMe - OhSINT",
+            "date": "2025-04-01",
+            "category": "OSINT",
+            "tags": ["tryhackme", "osint", "exiftool"]
         },
         {
             "filename": "2024-03-05-cryptography.md",
