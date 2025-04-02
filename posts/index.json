@@ -22,11 +22,11 @@
             "tags": ["tryhackme", "osint", "exiftool"]
         },
         {
-            "filename": "2024-03-05-cryptography.md",
-            "title": "Breaking Weak RSA Implementation",
-            "date": "2024-03-05",
+            "filename": "2025-04-01-Easy-Crack the hash.md",
+            "title": "TryHackMe - Crack the hash",
+            "date": "2024-04-01",
             "category": "Cryptography",
-            "tags": ["rsa", "cryptography", "math"]
+            "tags": ["tryhackme", "cryptography", "hashcat"]
         }
     ]
 } 
