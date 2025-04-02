@@ -30,6 +30,7 @@ That being said, understanding the process is more important than just copying a
 - hashcat
 - hashes.com
 - crackstation.net
+
 ## 3. Solution
 
 Initially, we are given several hashes. I decided to start by identifying them all, using the following command:
@@ -42,7 +43,8 @@ the -t option specifies that the hash being entered is text.
 
 I strung them all together with `;` so I could id them all at once.
 
-![](attachment/11406646f0dc4943fca45766984f7c46.png)
+![Screenshot From 2025-04-01 17-08-19](https://github.com/user-attachments/assets/eb29e895-f7b0-4fe8-9554-30573e26374b)
+
 
 I created text files for each hash type using the `touch` command and added the hashes using `echo`, ensuring proper formatting. Then, I used `hashcat` with the `rockyou.txt.gz` wordlist to attempt cracking each hash:
 
