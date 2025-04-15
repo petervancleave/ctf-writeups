@@ -27,21 +27,20 @@
             "date": "2025-04-01",
             "category": "Cryptography",
             "tags": ["tryhackme", "cryptography", "hashcat"]
-        }
-                {
+        },
+        {
             "filename": "2025-04-14-Easy-Python Basics.md",
             "title": "TryHackMe - Python Basics",
             "date": "2025-04-14",
             "category": "Miscellaneous",
             "tags": ["tryhackme", "python", "programming"]
-        }
-                }
-                {
+        },
+        {
             "filename": "2025-04-14-Info-History of Malware.md",
             "title": "TryHackMe - History of Malware",
             "date": "2025-04-14",
             "category": "Miscellaneous",
             "tags": ["tryhackme", "malware", "notes"]
-        }
+        },
     ]
 } 
