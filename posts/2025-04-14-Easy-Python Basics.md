@@ -1,4 +1,3 @@
-#THM 
 
 # Introduction
 
