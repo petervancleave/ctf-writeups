@@ -28,5 +28,12 @@
             "category": "Cryptography",
             "tags": ["tryhackme", "cryptography", "hashcat"]
         }
+                {
+            "filename": "2025-04-12-Python Basics.md",
+            "title": "TryHackMe - Python Basics",
+            "date": "2025-04-12",
+            "category": "Miscellaneous",
+            "tags": ["tryhackme", "python", "programming"]
+        }
     ]
 } 
