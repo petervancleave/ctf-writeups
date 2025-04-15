@@ -26,6 +26,8 @@ Find my CTF Writeups Here: https://petervancleave.github.io/ctf-writeups/
    }
    ```
 
+To check if the JSON is formatted correctly, you can visit this site: https://jsonlint.com/
+
 ## Post Categories
 
 - Web Exploitation
