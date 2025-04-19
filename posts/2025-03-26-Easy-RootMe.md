@@ -287,6 +287,18 @@ Lets use this to spawn a root shell:
 /usr/bin/python -c 'import os; os.execl("/bin/sh", "sh", "-p")'
 ```
 
+The way this command works is like so:
+1. Start a Python process.
+2. Within that Python process, import the os module.
+3. Use os.execl() to replace the Python process with a new /bin/sh process.
+4. It passes the -p flag to /bin/sh.
+
+The -p flag is often used in setuid or setgid programs. When a program with the setuid bit set is executed, it runs with the privileges of the file owner, not the user who executed it. Similarly, setgid programs run with the privileges of the file's group.
+
+By using -p, the spawned shell will retain the elevated privileges of the process that executed the Python script (if it had any, like being run via sudo or if the Python script itself had setuid/setgid permissions).
+
+(Basically spawning a privileged shell)
+
 ![s16](https://github.com/user-attachments/assets/457b8600-292e-4b3b-94a4-7325bed7f183)
 
 Now we can use `whoami` to see we are now root
