@@ -51,6 +51,8 @@ The mechanism lies behind the way LLMs process information. Many LLM application
 
 
 https://www.ibm.com/think/topics/prompt-injection
+
 https://genai.owasp.org/llmrisk/llm01-prompt-injection/
+
 https://www.prompt.security/blog/prompt-injection-101
 
