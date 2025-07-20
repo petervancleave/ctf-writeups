@@ -2,6 +2,8 @@
 **Platform:** TryHackMe
 **Difficulty:** Medium
 
+<img width="200" height="200" alt="b404cfcdf14054b6dabf2a94a48f0ba0" src="https://github.com/user-attachments/assets/29eaedeb-b851-4622-ba90-8dfd48723693" />
+
 ---
 Learn basic scripting by solving some challenges!
 
