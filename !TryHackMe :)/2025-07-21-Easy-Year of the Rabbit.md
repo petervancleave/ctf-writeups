@@ -322,7 +322,7 @@ honestly I search around for an exploit related to the sudo version of the box b
 
 https://www.exploit-db.com/exploits/47502
 
-CVE 2019-14287 (ask AI how this exploit works for explanation in writeup)
+CVE 2019-14287 
 
 run the following:
 
