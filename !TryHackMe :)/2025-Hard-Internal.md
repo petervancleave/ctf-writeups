@@ -36,14 +36,17 @@ internal.thm/blog
 It looks like this:
 
 SS1
+<img width="1908" height="925" alt="Screenshot 2025-09-08 172149" src="https://github.com/user-attachments/assets/b4adba93-3c93-48c4-9791-1f9f96c88b6b" />
 
 If we scroll down we see a wordpress login
 
 SS2
+<img width="1915" height="938" alt="Screenshot 2025-09-08 172250" src="https://github.com/user-attachments/assets/9d05eda9-08b0-4326-9e05-55629cc1cc2a" />
 
 we can try admin:admin credentials, and we see the username admin is valid because wordpress gives the error of the password being wrong for the username. 
 
 SS3
+<img width="332" height="328" alt="Screenshot 2025-09-08 172325" src="https://github.com/user-attachments/assets/0616ef42-ff36-41e9-a1aa-b0c504c508f2" />
 
 So we know our username is **admin**
 
@@ -54,6 +57,7 @@ wpscan --url http://10.201.93.226/blog -e vp,u
 ```
 
 SS4
+<img width="1020" height="160" alt="Screenshot 2025-09-08 173300" src="https://github.com/user-attachments/assets/5481b444-62be-4bb9-8cb9-074b5078a7c2" />
 
 we can confirm the admin username is found
 
@@ -62,6 +66,7 @@ wpscan --url http://10.201.93.226/blog --usernames admin --passwords /usr/share/
 ```
 
 SS5
+<img width="1082" height="127" alt="Screenshot 2025-09-08 174455" src="https://github.com/user-attachments/assets/e41c3f0a-e4cf-40cb-9a4d-527f613f2a47" />
 
 now we have the username and password:
 
@@ -70,15 +75,18 @@ admin:my2boys
 now we have a dashboard
 
 SS6
+<img width="1900" height="883" alt="Screenshot 2025-09-08 174651" src="https://github.com/user-attachments/assets/4f9a1d73-c165-49e1-b41e-ce8336533f6b" />
 
 We can check posts and see a private post 
 
 SS7
+<img width="1882" height="418" alt="Screenshot 2025-09-08 174737" src="https://github.com/user-attachments/assets/5f1e0180-6b7e-4abb-87c7-f5e2e0f4fc67" />
 
 If we go to edit it to see what it contains we can see a message stating
 "Don't forget to reset Will's credentials. william:arnold147"
 
 SS8
+<img width="1852" height="622" alt="Screenshot 2025-09-08 174832" src="https://github.com/user-attachments/assets/24f7e3d3-6e0d-453b-8247-5b9627992d94" />
 
 I think this is a red herring because when we enumerated usernames for wordpress on this machine, we only know of admin, no william usernames.
 
@@ -87,6 +95,7 @@ From here I got stuck for a while and had to reference a writeup on this machine
 We can go to appearance and the theme editor within wordpress to open a reverse shell.
 
 SS9 
+<img width="1755" height="335" alt="Screenshot 2025-09-08 175051" src="https://github.com/user-attachments/assets/35213076-198d-4623-a811-a073dccbc724" />
 
 start a listener
 
@@ -97,6 +106,7 @@ nc -nvlp 53
 Lets go to the 404 template and edit it
 
 SS10
+<img width="1882" height="717" alt="Screenshot 2025-09-08 175219" src="https://github.com/user-attachments/assets/a763d9c7-e4aa-4e72-b81f-3adb3f4771aa" />
 
 We will replace the 404 template with a php reverse shell code
 https://github.com/pentestmonkey/php-reverse-shell/blob/master/php-reverse-shell.php
@@ -325,6 +335,7 @@ aubreanna:bubb13guM!@#123
 If we remember port 22 is open so lets try to ssh as aubreanna from our own terminal using her password
 
 SS11
+<img width="1146" height="732" alt="Screenshot 2025-09-08 180951" src="https://github.com/user-attachments/assets/bc5f943b-0431-4b59-bc84-e396d3235251" />
 
 Now we have ssh access
 
@@ -357,6 +368,7 @@ netstat -ano
 ```
 
 SS12
+<img width="1193" height="562" alt="Screenshot 2025-09-08 181425" src="https://github.com/user-attachments/assets/b741a090-2d13-4bd4-b9c1-24701245fbcd" />
 
 We can see there is a service running on 8080. Also note there is a service running on 3306
 
@@ -372,6 +384,7 @@ Then we can enter aubreannas password again
 So now we're logged in again but now we have an IP address for docker0
 
 SS13
+<img width="1057" height="546" alt="Screenshot 2025-09-08 181749" src="https://github.com/user-attachments/assets/9b3a770b-fabc-452a-9332-c192fd9b01ef" />
 
 IP address for docker0: 172.17.0.1
 
@@ -380,6 +393,7 @@ So now we can go to local host 127.0.0.1:8080
 and we have a login page for jenkins
 
 SS14
+<img width="1852" height="913" alt="Screenshot 2025-09-08 181936" src="https://github.com/user-attachments/assets/99e0ecc9-97bc-423a-a1f8-c8f738ec84ab" />
 
 admin:admin does not work
 
@@ -394,14 +408,17 @@ we get the credentials:
 admin:spongebob
 
 SS15
+<img width="1317" height="690" alt="Screenshot 2025-09-08 192014" src="https://github.com/user-attachments/assets/79d19e10-d90a-40d4-bf1f-70ddfe1cf6f3" />
 
 and we can use them to login
 
 SS16
+<img width="1892" height="792" alt="Screenshot 2025-09-08 192040" src="https://github.com/user-attachments/assets/1911aa9f-d029-416c-9901-d96e5a4b2367" />
 
 Again I had to reference a writeup to understand the next step is to setup a reverse shell using a scripting console in the manage jenkins tab
 
 SS17
+<img width="1842" height="678" alt="Screenshot 2025-09-08 192201" src="https://github.com/user-attachments/assets/e1a6ffee-536c-44ad-ac67-3c8cefda104b" />
 
 Let's setup another listener
 
@@ -426,6 +443,7 @@ String cmd="/bin/sh";
 ```
 
 SS18
+<img width="1335" height="536" alt="Screenshot 2025-09-08 192608" src="https://github.com/user-attachments/assets/5e46a64a-79b2-4986-ae88-ff0c6d82fa69" />
 
 We can use id and see we are jenkins
 
@@ -451,6 +469,7 @@ root:tr0ub13guM!@#123
 now we can use this to ssh into root
 
 SS19
+<img width="1177" height="705" alt="Screenshot 2025-09-08 193145" src="https://github.com/user-attachments/assets/d95ae176-0152-443b-9cb9-2f82bf9c3c34" />
 
 we can ls -la and find the root.txt
 
