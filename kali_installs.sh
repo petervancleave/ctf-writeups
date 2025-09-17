@@ -101,6 +101,8 @@ pip3 install impacket
 
 gem install evil-winrm
 
+apt install -y poppler-utils
+
 # nuclei
 echo "nuclei"
 go install github.com/projectdiscovery/nuclei/v3/cmd/nuclei@latest
