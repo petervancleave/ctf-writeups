@@ -59,8 +59,6 @@ rm google-chrome-stable_current_amd64.deb
 # others
 pip3 install name-that-hash
 
-apt install -y steghide
-
 apt install -y openvpn
 
 # secLists place in ~/seclists
@@ -136,6 +134,15 @@ if [ -d "$LINENUM_DIR" ]; then
 else
   git clone https://github.com/rebootuser/LinEnum.git "$LINENUM_DIR"
 fi
+
+# metadata stuff
+echo "metadata stuff, steghide, check comments on script"
+
+apt install -y steghide
+
+# check for exiftool, pdfinfo,
+# unrelated web stuff ----curl, strings
+
 
 # final updating
 echo "Running final apt update and full-upgrade..."
