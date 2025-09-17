@@ -101,10 +101,27 @@ pip3 install impacket
 
 gem install evil-winrm
 
+echo "poppler-utils, check script for list"
 apt install -y poppler-utils
 
-# nuclei
+# pdfattach – add a new embedded file (attachment) to an existing PDF
+# pdfdetach – extract embedded documents from a PDF
+# pdffonts – lists the fonts used in a PDF
+# pdfimages – extract all embedded images at native resolution from a PDF
+# pdfinfo – list all information of a PDF
+# pdfseparate – extract single pages from a PDF
+# pdftocairo – convert single pages from a PDF to vector or bitmap formats using cairo
+# pdftohtml – convert PDF to HTML format retaining formatting
+# pdftoppm – convert a PDF page to a bitmap
+# pdftops – convert PDF to printable PS format
+# pdftotext – extract all text from PDF
+# pdfunite – merges several PDFs
+# EXAMPLE - ```pdftotext file.pdf - | grep string```
+
+
 echo "nuclei"
+# nuclei
+
 go install github.com/projectdiscovery/nuclei/v3/cmd/nuclei@latest
 # Go binaries are in PATH
 if ! command -v nuclei &> /dev/null; then
