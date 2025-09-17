@@ -116,7 +116,7 @@ apt install -y poppler-utils
 # pdftops – convert PDF to printable PS format
 # pdftotext – extract all text from PDF
 # pdfunite – merges several PDFs
-# EXAMPLE - ```pdftotext file.pdf - | grep string```
+# EXAMPLE - pdftotext file.pdf - | grep string
 
 
 echo "nuclei"
