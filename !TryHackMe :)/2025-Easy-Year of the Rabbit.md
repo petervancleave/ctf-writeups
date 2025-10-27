@@ -166,7 +166,7 @@ open the txt file to find:
 <]>+. <+++[ ->--- <]>-- ---.- ----. <
 
 
-I asked AI what this was as I was unfamiliar. It text is a brainfuck-encoded string.
+The text is a brainfuck encoded string.
 
 I had ChatGPT write me a python interpeter to decode the brainfuck locally:
 
