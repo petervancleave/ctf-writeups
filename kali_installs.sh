@@ -18,7 +18,6 @@ apt update
 echo "Go, Rust, Python3-pip, Ruby, curl, git, wget"
 apt install -y golang-go rustc cargo python3-pip ruby-full curl git wget
 
-# Upgrade pip 
 echo "pip pip"
 pip3 install --upgrade pip
 
@@ -140,6 +139,10 @@ echo "metadata stuff, steghide, check comments on script"
 
 apt install -y steghide
 
+apt install -y exiftool
+
+apt install -y airgeddon
+
 # check for exiftool, pdfinfo,
 # unrelated web stuff ----curl, strings
 
@@ -154,4 +157,61 @@ apt autoremove -y
 apt autoclean
 
 echo "Tools Installed"
+
+
+#
+# APT packages installed:
+# - golang-go
+# - rustc
+# - cargo
+# - python3-pip
+# - ruby-full
+# - curl
+# - git
+# - wget
+# - okteta
+# - code (Visual Studio Code via Microsoft repo)
+# - openvpn
+# - feroxbuster
+# - poppler-utils (provides pdftotext, pdfinfo, pdfimages, pdftops, pdftoppm, pdffonts, etc)
+# - steghide
+#
+# exiftool
+# - airgeddon
+
+# Direct downloads and manual installs:
+# - linpeas.sh downloaded to $HOME/Desktop
+# - google-chrome-stable .deb downloaded and installed
+#
+# pip3 installations:
+# - pip upgraded itself
+# - name-that-hash
+# - impacket
+#
+# gem installation:
+# - evil-winrm
+#
+# go install commands (installed into $GOPATH/bin, copied to /usr/local/bin if not in PATH):
+# - ffuf (github.com/ffuf/ffuf/v2)
+# - nuclei (github.com/projectdiscovery/nuclei/v3/cmd/nuclei)
+#
+# Git repositories cloned:
+# - SecLists cloned to ~/seclists from https://github.com/danielmiessler/SecLists.git
+# - LinEnum cloned to ~/LinEnum from https://github.com/rebootuser/LinEnum.git
+#
+# Wordlists and files:
+# - rockyou.txt: extracted from /usr/share/wordlists/rockyou.txt.gz if present
+#   otherwise downloaded to ~/rockyou.txt from brannondorsey repository
+#
+# Desktop integration:
+# Creates $HOME/Desktop/okteta.desktop for Okteta and sets ownership to the invoking sudo user
+#
+# Repository and key setup:
+# Adds Microsoft GPG key and apt source for Visual Studio Code
+#
+# System maintenance:
+# - apt update
+# - apt full-upgrade -y
+# - apt autoremove -y
+# - apt autoclean
 
