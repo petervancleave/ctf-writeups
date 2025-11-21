@@ -1,4 +1,4 @@
-
+"John was working on his smart home appliances when he noticed weird traffic going across the network. Can you help him figure out what these weird network communications are?"
 
 ```shell
 nmap 10.201.94.95 -sV -p- -T4 -n
