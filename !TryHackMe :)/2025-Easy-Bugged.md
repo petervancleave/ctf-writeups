@@ -5,6 +5,7 @@ nmap 10.201.94.95 -sV -p- -T4 -n
 ```
 
 SS1
+<img width="940" height="278" alt="Screenshot 2025-11-20 211556" src="https://github.com/user-attachments/assets/f9d1f971-6f23-4add-835e-f7a6415272a9" />
 
 
 
@@ -28,6 +29,7 @@ for information about MQTT protocol and possibilities about it.
 **Topic Manipulation:** Attackers might publish to topics they shouldn't have access to (especially in multi-tenant or poorly configured environments), leading to unauthorized device control
 
 SS2
+<img width="626" height="343" alt="Screenshot 2025-11-20 212230" src="https://github.com/user-attachments/assets/ec1854a4-449a-4a20-8053-c89d35e5d37d" />
 
 ```shell
 apt-get install mosquitto mosquitto-clients
@@ -42,6 +44,7 @@ mosquitto_sub -h 10.201.94.95 -p 1883 -t "#" -v
 ```
 
 SS3
+<img width="903" height="563" alt="Screenshot 2025-11-20 212825" src="https://github.com/user-attachments/assets/cb038c38-7e05-4e9e-83f0-4d9b5d89e4fc" />
 
 
 We can see the text:
@@ -54,6 +57,7 @@ This is a base64 encoded JSON.
 We can decode it by going to an online base64 decoder.
 
 SS4
+<img width="757" height="750" alt="Screenshot 2025-11-20 214116" src="https://github.com/user-attachments/assets/08e5461e-49d1-4b91-96bd-ba269a129334" />
 
 The decoded message is:
 ```test
@@ -85,6 +89,7 @@ mosquitto_pub -h 10.201.94.95 -p 1883 -t 'XD2rfR9Bez/GqMpRSEobh/TvLQehMg0E/sub' 
 Once I sent the HELP request, I got more base64 encoded text in the terminal output
 
 SS5
+<img width="863" height="124" alt="Screenshot 2025-11-20 222207" src="https://github.com/user-attachments/assets/fe1a4d6e-7475-4d09-88cb-e6dea4174662" />
 
 ```text
 SW52YWxpZCBtZXNzYWdlIGZvcm1hdC4KRm9ybWF0OiBiYXNlNjQoeyJpZCI6ICI8YmFja2Rvb3IgaWQ+IiwgImNtZCI6ICI8Y29tbWFuZD4iLCAiYXJnIjogIjxhcmd1bWVudD4ifSk=
@@ -160,5 +165,4 @@ eyJpZCI6ImNkZDFiMWMwLTFjNDAtNGIwZi04ZTIyLTYxYjM1NzU0OGI3ZCIsInJlc3BvbnNlIjoiZmxh
 ```
 
 Which when decoded gives us the flag.
-
-SS6
+<img width="864" height="243" alt="Screenshot 2025-11-20 224119" src="https://github.com/user-attachments/assets/39527b5c-8717-4902-9f49-f75f126fd3a2" />
