@@ -41,6 +41,7 @@ Q: Look at the example table. Try to retrieve the department of the employee Bob
 A: SELECT * FROM EMPLOYEES WHERE USERID=96134
 
 SS1
+<img width="1913" height="984" alt="Screenshot 2026-02-01 171808" src="https://github.com/user-attachments/assets/7b7bcffd-e667-40a1-8523-8c71761af99b" />
 
 ### 3 Data Manipulation Language (DML)
 
@@ -67,6 +68,7 @@ Q: Try to change the department of Tobi Barnett to 'Sales'. Note that you have b
 A: UPDATE EMPLOYEES SET department='Sales' WHERE USERID=89762
 
 SS2
+<img width="1918" height="955" alt="Screenshot 2026-02-01 172259" src="https://github.com/user-attachments/assets/50e96f40-a96b-4a0e-9148-e0627f73bffc" />
 
 ### 4 Data Definition Language (DDL)
 
@@ -103,6 +105,7 @@ Q: Now try to modify the schema by adding the column "phone" (varchar(20)) to th
 A: ALTER TABLE EMPLOYEES ADD phone varchar(20)
 
 SS3
+<img width="1915" height="951" alt="Screenshot 2026-02-01 172505" src="https://github.com/user-attachments/assets/357ebd75-958c-4c8a-a168-98c91970f9c8" />
 
 ### 5 Data Control Language (DCL)
 
@@ -131,6 +134,7 @@ Q: Try to grant rights to the table `grant_rights` to user `unauthorized_user`:
 A: GRANT SELECT ON grant_right to unauthorized_user
 
 SS4
+<img width="1917" height="956" alt="Screenshot 2026-02-01 172757" src="https://github.com/user-attachments/assets/91117724-3f38-4ab9-96d4-593a6d2489f5" />
 
 ### 6 Examples
 
@@ -159,6 +163,7 @@ The behavior of the query changes based entirely on the **delimiters** (like `'`
 3. **Stacked Queries (`;`):** Allows the attacker to run entirely new commands (DML or DDL) after the initial legitimate one.
 
 SS5
+<img width="1908" height="957" alt="Screenshot 2026-02-01 174724" src="https://github.com/user-attachments/assets/587152b2-c332-4d9e-9470-09d8aab5052e" />
 
 ### 7 Consequences of SQLi
 
@@ -222,6 +227,7 @@ Try using the form below to retrieve all the users from the users table. You sho
 
 A:
 SS6
+<img width="1917" height="957" alt="Screenshot 2026-02-01 175123" src="https://github.com/user-attachments/assets/a96a3d74-13b7-43ea-92ab-58c26507a7be" />
 
 ### 10 Numeric SQLi
 
@@ -241,6 +247,7 @@ Login_Count: 0
 User_Id: 0 or 1=1
 
 SS7
+<img width="1911" height="953" alt="Screenshot 2026-02-01 175257" src="https://github.com/user-attachments/assets/279bb440-d2b1-47f3-b0c8-98824a984ce8" />
 
 ### 11 Compromising Confidentiality with String SQLi
 
@@ -278,6 +285,7 @@ Employee Name: ' or 1=1 --
 Authentication TAN: 3SL99A
 
 SS8
+<img width="1916" height="951" alt="Screenshot 2026-02-01 175500" src="https://github.com/user-attachments/assets/2193fb77-13ae-4536-a50d-85426d82542e" />
 
 ### 12 Compromising Integrity with Query Chaining
 
@@ -295,6 +303,7 @@ Employee Name: `Smith' ; UPDATE employees SET salary = 999999 WHERE first_name =
 Authentication TAN:  **3SL99A**
 
 SS9
+<img width="1908" height="983" alt="Screenshot 2026-02-01 180200" src="https://github.com/user-attachments/assets/212d7cbd-cf57-4db5-9038-8ff26215109d" />
 
 ### 13 Compromising Availability
 
@@ -308,6 +317,7 @@ A:
 Action Contains: %';drop table access_log-- 
 
 SS10
+<img width="1914" height="984" alt="Screenshot 2026-02-01 180340" src="https://github.com/user-attachments/assets/155afcc5-f423-4dc4-aa04-617749d0af6e" />
 
 
 ---
@@ -414,6 +424,7 @@ Password: copy and paste daves password from the password field - passW0rD
 
 
 SS11
+<img width="1905" height="950" alt="Screenshot 2026-02-01 181102" src="https://github.com/user-attachments/assets/6ae57b1a-e7bf-4d10-b215-09cc2911cf19" />
 
 ### 4 Blind SQLi
 
@@ -461,6 +472,7 @@ Password: thisisasecretfortomonly
 
 
 SS12
+<img width="1913" height="976" alt="Screenshot 2026-02-01 182643" src="https://github.com/user-attachments/assets/8d9414f5-7929-4335-8af5-80615c565731" />
 
 ### 6 Quiz
 
@@ -500,6 +512,9 @@ Solution 3: The database registers 'Robert' and deletes the table afterwards.
 <u>Solution 4: The database registers 'Robert' ); DROP TABLE Students;--'.</u>
 
 SS13
+<img width="1905" height="984" alt="Screenshot 2026-02-01 182947" src="https://github.com/user-attachments/assets/809bcfe4-e39b-465e-804a-54e6fe08c570" />
+
+---
 
 # SQL Injection (Mitigation)
 
