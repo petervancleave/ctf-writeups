@@ -1,5 +1,6 @@
 # Cloud Computing Fundamentals
 
+<img width="900" height="900" alt="68dac5d6d4d4f23175b3296f-1768564581802" src="https://github.com/user-attachments/assets/3032e31b-9121-4c47-b7b7-b32aa27d985d" />
 
 
 
