@@ -7,6 +7,11 @@ http://127.0.0.1:8080/WebGoat/challenge/logo
 
 But for my bugged instance of this old version, nothing seemed to work despite 2 hours of trying different approaches, web browsers, proxy settings, different DAST tools etc.
 
+<img width="1823" height="888" alt="Screenshot 2026-02-11 142916" src="https://github.com/user-attachments/assets/a4b04e83-4f5a-408e-b335-6876b7c75298" />
+
+<img width="1821" height="893" alt="Screenshot 2026-02-11 143148" src="https://github.com/user-attachments/assets/d399e823-146e-4f32-a9c9-a208b231e026" />
+
+
 So I then tried to bruteforce knowing the following parameters to format with hydra:
 
 http://127.0.0.1:8080/WebGoat/challenge/1
@@ -165,6 +170,9 @@ So knowing that for whatever reason proxy inspection was invalid for me, I decid
 
 So I saved the WebGoat logo image file locally and then needed to extract the PINCODE using a Python script. The image should have plain text at a specific byte offset (81216–81219) so I asked an AI to help with writing the script.... 
 
+<img width="1252" height="832" alt="Screenshot 2026-02-11 143219" src="https://github.com/user-attachments/assets/088edcf2-09bc-483b-9308-bc867300d22c" />
+
+
 ```python
 with open('logo.png', 'rb') as f:
     data = f.read()
@@ -188,3 +196,6 @@ my password:
 !!webgoat_admin_1444!!
 
 Enter the password and retrieve the flag.
+
+<img width="1308" height="857" alt="Screenshot 2026-02-11 153844" src="https://github.com/user-attachments/assets/3414362d-e6b6-4534-9776-b61a87a7b830" />
+
