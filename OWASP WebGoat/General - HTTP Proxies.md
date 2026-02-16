@@ -134,5 +134,11 @@ Then let the request continue through (by hitting the play button).
 
 SS1
 
+<img width="1133" height="784" alt="Screenshot 2026-02-15 170529" src="https://github.com/user-attachments/assets/2bc5760f-28dd-4665-9ab8-a7e09e6f4f9e" />
+
+
 SS2
+
+<img width="1252" height="823" alt="Screenshot 2026-02-15 170604" src="https://github.com/user-attachments/assets/95425923-7dcb-4438-ae1c-5918fe647afd" />
+
 
