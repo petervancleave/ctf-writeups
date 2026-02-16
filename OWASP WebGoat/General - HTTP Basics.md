@@ -36,6 +36,9 @@ Enter your name in the input field below and press "Go!" to submit. The server w
 Enter your name in the input field below and press "Go!" to submit. The server will accept the request, reverse the input and display it back to the user, illustrating the basics of handling an HTTP request.
 
 SS1
+<img width="1275" height="826" alt="Screenshot 2026-02-15 165150" src="https://github.com/user-attachments/assets/af7b67d9-08b6-43ad-bd26-ccc71d73705d" />
+
+
 
 # 3
 
@@ -45,5 +48,11 @@ What type of HTTP command did WebGoat use for this lesson. A POST or a GET.
 
 SS2
 
+<img width="1272" height="831" alt="Screenshot 2026-02-15 165549" src="https://github.com/user-attachments/assets/c8121a91-99fa-4df4-ac39-49f452df0644" />
+
+
 SS3
+
+<img width="1169" height="810" alt="Screenshot 2026-02-15 165558" src="https://github.com/user-attachments/assets/a4f0f9a0-b46f-4242-9999-0d7ecc798583" />
+
 
