@@ -1,7 +1,7 @@
 
 The challenge is simple, you are given the username: admin and must find a password in order to retrieve the flag.
 
-This was a frustrating challenge for me because I spent a while trying to figure out a correct solution only to look online for help and realize for whatever reason my Burp Suite was not collecting correct GET requests from the localhost. This was very frustrating because there was no way for me to accomplish the challenge as intended through information disclosure, so I had to get creative. I knew from online guides the correct directory where you should be able to retrieve the password from looking at the raw source from here:
+For whatever reason my Burp Suite was not collecting correct GET requests from the localhost. This was very frustrating because there was no way for me to accomplish the challenge as intended through information disclosure, so I had to get creative. I knew from online guides the correct directory where you should be able to retrieve the password from looking at the raw source from here:
 
 http://127.0.0.1:8080/WebGoat/challenge/logo
 
