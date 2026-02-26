@@ -1,5 +1,5 @@
 
-# # TryHackMe: OhSINT
+# TryHackMe: OhSINT
 
 **Challenge Name:** OhSINT
 **Platform:** TryHackMe
